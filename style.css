@@ -1,0 +1,128 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(to left, #ffda77, #ffa45b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  height: 85vh;
+  width: 80vw;
+  background-image: linear-gradient(to right, pink, rgb(222, 108, 127));
+  border-radius: 14px;
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+
+.ball {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  position: fixed;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+}
+
+.ballEffect {
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  animation: spinBall 0.1s linear infinite;
+  background-color: aliceblue;
+}
+        
+@keyframes spinBall {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+        
+.paddle {
+  height: 100px;
+  width: 18px;
+  position: absolute;
+}
+        
+.player1 {
+    left:5%;
+    background-color: rgb(240, 79, 106);
+}
+        
+.player2 {
+    right:5%;
+    background-color: orange;
+}
+        
+.player1score {
+  text-align: center;
+    height: 50px;
+    width: 50px;
+    color: rgb(240, 79, 106);
+    left: 30vw;
+    margin-top: 10px;
+    position: fixed;
+}
+        
+.player2score {
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    color: orange;
+    position: fixed;
+    left:70vw;
+    margin-top: 10px;
+}
+
+    
+#startButton{
+  position: fixed;
+  text-align: center;
+  top: 0;
+  bottom:30px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 30px;
+  width: 200px;
+  background-color: aliceblue;
+  color: #5c6e91;
+  border-radius: 15px;
+  border: 1px solid #0ff;
+  font-size: 20px;
+}
+
+
+#newGameButton{
+  position: fixed;
+  text-align: center;
+  margin-bottom: 0;
+  bottom:30px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 30px;
+  width: 300px;
+  background-color: aliceblue;
+  color: #5c6e91;
+  border-radius: 15px;
+  border: 1px solid #0ff;
+  font-size: 20px;
+}
+
+.copyright{
+  position: fixed;
+  text-align: center;
+  margin-bottom: 0;
+  bottom:5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
