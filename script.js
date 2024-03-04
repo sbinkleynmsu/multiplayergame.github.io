@@ -19,10 +19,10 @@ let boardCoord = board.getBoundingClientRect();
 let paddle = document.querySelector('.paddle').getBoundingClientRect();
 
 //speed
-let dx = Math.floor(Math.random() * 4) +3;
-let dy = Math.floor(Math.random() * 4) +3;
-let dxd = Math.floor(Math.random() * 2);
-let dyd = Math.floor(Math.random() * 2);
+let speedX = Math.floor(Math.random() * 4) +3;
+let speedY = Math.floor(Math.random() * 4) +3;
+let directX = Math.floor(Math.random() * 2);
+let directY = Math.floor(Math.random() * 2);
 
 //buttons
 startButton.addEventListener('click', startGame);
@@ -33,29 +33,36 @@ function newGame(){
   score2.textContent = '0';
 }//end newGame
 
+// Recalculate board and ball coordinates when changed to full of half screen
+window.addEventListener('resize', () => {
+  boardCoord = board.getBoundingClientRect();
+  ballCoord = ball.getBoundingClientRect();
+});
+
 function startGame(){
   gameState = 'play';
-  
   requestAnimationFrame(() => {
-    dx = Math.floor(Math.random() * 4) +3; 
-    dy = Math.floor(Math.random() * 4) +3; 
-    dxd = Math.floor(Math.random() * 2); 
-    dyd = Math.floor(Math.random() * 2); 
-    moveBall(dx, dy, dxd, dyd); 
+    boardCoord = board.getBoundingClientRect();
+    ballCoord = ball.getBoundingClientRect();
+    speedX = Math.floor(Math.random() * 4) +3; 
+    speedY = Math.floor(Math.random() * 4) +3; 
+    //0 means ball goes up, 1 means ball goes down
+    directX = Math.floor(Math.random() * 2); 
+    directY = Math.floor(Math.random() * 2); 
+    moveBall(speedX, speedY, directX, directY); 
   });
 }//end startGame
 
-  
 
 document.addEventListener('keydown', (e) => {
   if (gameState == 'play') {
     //player1 keys up and down
     if (e.key == 'w') {
-      player1.style.top = Math.max(boardCoord.top, player1Coord.top - window.innerHeight * 0.06) + 'px';
+      player1.style.top = Math.max(boardCoord.top, player1Coord.top - window.innerHeight * 0.1) + 'px';
       player1Coord = player1.getBoundingClientRect();
     }
     if (e.key == 's') {
-      player1.style.top = Math.min(boardCoord.bottom - paddle.height, player1Coord.top + window.innerHeight * 0.06) + 'px';
+      player1.style.top = Math.min(boardCoord.bottom - paddle.height, player1Coord.top + window.innerHeight * 0.1) + 'px';
       player1Coord = player1.getBoundingClientRect();
     }
 
@@ -71,22 +78,23 @@ document.addEventListener('keydown', (e) => {
   }
 });//end event listner
 
-function moveBall(dx, dy, dxd, dyd) {
+function moveBall(speedX, speedY, directX, directY) {
   if (ballCoord.top <= boardCoord.top) {
-    dyd = 1;
+    directY = 1;
   }
   if (ballCoord.bottom >= boardCoord.bottom) {
-    dyd = 0;
+    directY = 0;
   }
+
   if (ballCoord.left <= player1Coord.right && ballCoord.top >= player1Coord.top && ballCoord.bottom <= player1Coord.bottom) {
-    dxd = 1;
-    dx = Math.floor(Math.random() * 4) +3;
-    dy = Math.floor(Math.random() * 4) +3;
+    directX = 1;
+    speedX = Math.floor(Math.random() * 4) +3;
+    speedY = Math.floor(Math.random() * 4) +3;
   }
   if (ballCoord.right >= player2Coord.left && ballCoord.top >= player2Coord.top && ballCoord.bottom <= player2Coord.bottom) {
-    dxd = 0;
-    dx = Math.floor(Math.random() * 4) +3;
-    dy = Math.floor(Math.random() * 4) +3;
+    directX = 0;
+    speedX = Math.floor(Math.random() * 4) +3;
+    speedY = Math.floor(Math.random() * 4) +3;
   }
   if (ballCoord.left <= boardCoord.left || ballCoord.right >= boardCoord.right) {
     if (ballCoord.left <= boardCoord.left) {
@@ -100,11 +108,12 @@ function moveBall(dx, dy, dxd, dyd) {
     ball.style = tempBall.style;
     return;
   }
-  ball.style.top = ballCoord.top + dy * (dyd == 0 ? -1 : 1) + 'px';
-  ball.style.left = ballCoord.left + dx * (dxd == 0 ? -1 : 1) + 'px';
+  ball.style.top = ballCoord.top + speedY * (directY == 0 ? -1 : 1) + 'px';
+  ball.style.left = ballCoord.left + speedX * (directX == 0 ? -1 : 1) + 'px';
+  console.log(ball.style.top + " " + ball.style.left + " ");
   ballCoord = ball.getBoundingClientRect();
   requestAnimationFrame(() => {
-    moveBall(dx, dy, dxd, dyd);
+    moveBall(speedX, speedY, directX, directY);
   });
 }//end moveBall
 

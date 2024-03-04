@@ -7,15 +7,23 @@
 body {
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(to left, #ffda77, #ffa45b);
+  background-image: linear-gradient(to left, #fff877, #ffa45b);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.title{
+  font-size: 30px;
+  color: rgb(222, 108, 127);
+  margin-top: 0;
+  top:0;
 }
 
 .board {
-  height: 85vh;
-  width: 80vw;
+  height:500px;
+  width: 500px;
   background-image: linear-gradient(to right, pink, rgb(222, 108, 127));
   border-radius: 14px;
   position: relative;
@@ -54,12 +62,18 @@ body {
 }
         
 .player1 {
-    left:5%;
+    top: 7.5%;
+    left: 5%;
+    width:20px;
+    height: 100px;
     background-color: rgb(240, 79, 106);
 }
         
 .player2 {
-    right:5%;
+    top: 37.5%;
+    right: 5%;
+    width:20px;
+    height: 100px;
     background-color: orange;
 }
         
@@ -68,9 +82,9 @@ body {
     height: 50px;
     width: 50px;
     color: rgb(240, 79, 106);
-    left: 30vw;
+    left: 20%;
     margin-top: 10px;
-    position: fixed;
+    position: absolute;
 }
         
 .player2score {
@@ -78,8 +92,8 @@ body {
     height: 50px;
     width: 50px;
     color: orange;
-    position: fixed;
-    left:70vw;
+    position: absolute;
+    left:75%;
     margin-top: 10px;
 }
 
@@ -87,8 +101,9 @@ body {
 #startButton{
   position: fixed;
   text-align: center;
-  top: 0;
-  bottom:30px;
+  margin-top: 70px;
+  top:0;
+  z-index: 1;
   left: 50%;
   transform: translateX(-50%);
   height: 30px;
@@ -124,5 +139,64 @@ body {
   bottom:5px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+@media screen and (max-width: 560px) {
+  .board {
+    height: 500px;
+    width: 500px;
+    margin-top: 50px;
+    margin-bottom: 70px;
+  }
+
+  .ball {
+    position: fixed;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+  }
+
+  .paddle {
+    position: absolute;
+  }
+
+  .player1 {
+    top: 7.5%;
+    left: 5%;
+  }
+
+  .player2 {
+    top: 37.5%;
+    right: 5%;
+  }
+
+  .player1score {
+    left: 20%;
+  }
+
+  .player2score {
+    left: 75%;
+  }
+
+  #startButton {
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #newGameButton {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .copyright {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
