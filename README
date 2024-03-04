@@ -5,3 +5,6 @@ How to play:
     How to start game:
         After each goal, press 'Press to Play' to continue game.
         To reset the score press 'Press to Start New Game'.
+
+References:
+GfG. (2023, February 15). Pong game in JavaScript. GeeksforGeeks. https://www.geeksforgeeks.org/pong-game-in-javascript/ 
