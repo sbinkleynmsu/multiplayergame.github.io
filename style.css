@@ -11,14 +11,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-}
-
-.title{
-  font-size: 30px;
-  color: rgb(222, 108, 127);
-  margin-top: 0;
-  top:0;
 }
 
 .board {
@@ -59,6 +51,9 @@ body {
   height: 100px;
   width: 18px;
   position: absolute;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  margin: auto;
 }
         
 .player1 {
@@ -101,7 +96,7 @@ body {
 #startButton{
   position: fixed;
   text-align: center;
-  margin-top: 70px;
+  margin-top: 50px;
   top:0;
   z-index: 1;
   left: 50%;

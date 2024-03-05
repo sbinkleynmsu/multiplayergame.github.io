@@ -10,6 +10,7 @@ let score2 = document.querySelector('.player2score');
 let startButton = document.getElementById('startButton');
 let newGameButton = document.getElementById('newGameButton');
 
+
 //coordinates
 let player1Coord = player1.getBoundingClientRect();
 let player2Coord = player2.getBoundingClientRect();
@@ -37,6 +38,9 @@ function newGame(){
 window.addEventListener('resize', () => {
   boardCoord = board.getBoundingClientRect();
   ballCoord = ball.getBoundingClientRect();
+  paddle = document.querySelector('.paddle').getBoundingClientRect();
+  player1 = document.querySelector('.player1').getBoundingClientRect();
+  player2 = document.querySelector('.player2').getBoundingClientRect();
 });
 
 function startGame(){
@@ -56,6 +60,7 @@ function startGame(){
 
 document.addEventListener('keydown', (e) => {
   if (gameState == 'play') {
+    
     //player1 keys up and down
     if (e.key == 'w') {
       player1.style.top = Math.max(boardCoord.top, player1Coord.top - window.innerHeight * 0.1) + 'px';
